@@ -9,7 +9,7 @@
                     </div>
                  <div>
                     <!-- start row-->       
-                    <div class="row g-2 mb-2">
+                    <div class="row  g-2 mb-2">
                         <div class="col-xxl-5">
                             <div class="row g-2">
                                 <!-- Total Orders -->
