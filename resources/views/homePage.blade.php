@@ -7,7 +7,17 @@
                             <h4 class="page-main-title m-0">Welcome</h4>
                         </div>
                     </div>
-
+                 <div>
+                    <!-- start row-->       
+                    <div class="row g-2 mb-2">
+                        <div class="col-xxl-5">
+                            <div class="row g-2">
+                                <!-- Total Orders -->
+                                <div class="col-xl-6">
+                                    <div class="card m-0">
+                                        <div class="card-header border-0">
+                                            <h4 class="card-title
+                 </div>
                     <div class="row g-2 mb-2">
                         <div class="col-xxl-5">
                             <div class="row g-2">
