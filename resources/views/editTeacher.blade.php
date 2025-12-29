@@ -61,5 +61,7 @@
         </form>
     </div>
     <div class="mb-4">
+        <button onclick="history.back()" class="btn btn-warning">Back</button>
+        <class>
     </div>
 @endsection
