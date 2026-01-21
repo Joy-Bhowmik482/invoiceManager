@@ -26,7 +26,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                for any
                                 @foreach($clients as $client)
                                     <tr>
                                         <td class="fw-semibold">{{ $client->name }}</td>
