@@ -16,8 +16,8 @@
         <title>
             @yield('contentTitle')</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-        <meta content="Themesbrand" name="author" />
+        <meta content="Professional Invoice Management System - Streamline your invoicing process" name="description" />
+        <meta content="Invoice Manager Team" name="author" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{ asset('public/adminPanel/themesbrand.com/master/') }}/assets/images/favicon.ico" />
 
@@ -58,21 +58,21 @@
                         <div class="d-flex">
                             <!-- LOGO -->
                             <div class="navbar-brand-box horizontal-logo">
-                                <a href="index.html" class="logo logo-dark">
+                                <a href="{{ route('dashboard') }}" class="logo logo-dark">
                                     <span class="logo-sm">
-                                        <img src="{{ asset('public/adminPanel/themesbrand.com/master/') }}/assets/images/logo-sm.png" alt="" height="22" />
+                                        <i class="ri-file-text-line fs-2"></i>
                                     </span>
                                     <span class="logo-lg">
-                                        <img src="{{ asset('public/adminPanel/themesbrand.com/master/') }}/assets/images/logo-dark.png" alt="" height="17" />
+                                        <span class="fw-bold fs-5">Invoice Manager</span>
                                     </span>
                                 </a>
 
-                                <a href="index.html" class="logo logo-light">
+                                <a href="{{ route('dashboard') }}" class="logo logo-light">
                                     <span class="logo-sm">
-                                        <img src="{{ asset('public/adminPanel/themesbrand.com/master/') }}/assets/images/logo-sm.png" alt="" height="22" />
+                                        <i class="ri-file-text-line fs-2"></i>
                                     </span>
                                     <span class="logo-lg">
-                                        <img src="{{ asset('public/adminPanel/themesbrand.com/master/') }}/assets/images/logo-light.png" alt="" height="17" />
+                                        <span class="fw-bold fs-5">Invoice Manager</span>
                                     </span>
                                 </a>
                             </div>
@@ -90,87 +90,20 @@
                             </button>
 
                             <!-- App Search-->
-                            <form class="app-search d-none d-md-block">
+                            <form class="app-search d-none d-md-block" action="{{ route('search') }}" method="GET" id="desktop-search-form">
                                 <div class="position-relative">
                                     <input
                                         type="text"
                                         class="form-control"
-                                        placeholder="Search..."
+                                        placeholder="Search invoices, clients, products..."
                                         autocomplete="off"
                                         id="search-options"
-                                        value=""
+                                        name="query"
+                                        value="{{ request('query') }}"
                                     />
-                                    <span class="mdi mdi-magnify search-widget-icon"></span>
-                                    <span
-                                        class="mdi mdi-close-circle search-widget-icon search-widget-icon-close d-none"
-                                        id="search-close-options"
-                                    ></span>
-                                </div>
-                                <div class="dropdown-menu dropdown-menu-lg" id="search-dropdown">
-                                    <div data-simplebar style="max-height: 320px">
-                                        <!-- item-->
-                                        <div class="dropdown-header">
-                                            <h6 class="text-overflow text-muted mb-0 text-uppercase">
-                                                Recent Searches
-                                            </h6>
-                                        </div>
-
-                                        <!-- item-->
-                                        <div class="dropdown-header mt-2">
-                                            <h6 class="text-overflow text-muted mb-2 text-uppercase">Members</h6>
-                                        </div>
-
-                                        <div class="notification-list">
-                                            <!-- item -->
-                                            <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
-                                                <div class="d-flex">
-                                                    <img
-                                                        src="{{ asset('public/adminPanel/themesbrand.com/master/') }}/assets/images/users/avatar-2.jpg"
-                                                        class="me-3 rounded-circle avatar-xs"
-                                                        alt="user-pic"
-                                                    />
-                                                    <div class="flex-grow-1">
-                                                        <h6 class="m-0">Angela Bernier</h6>
-                                                        <span class="fs-11 mb-0 text-muted">Manager</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <!-- item -->
-                                            <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
-                                                <div class="d-flex">
-                                                    <img
-                                                        src="{{ asset('public/adminPanel/themesbrand.com/master/') }}/assets/images/users/avatar-3.jpg"
-                                                        class="me-3 rounded-circle avatar-xs"
-                                                        alt="user-pic"
-                                                    />
-                                                    <div class="flex-grow-1">
-                                                        <h6 class="m-0">David Grasso</h6>
-                                                        <span class="fs-11 mb-0 text-muted">Web Designer</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <!-- item -->
-                                            <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
-                                                <div class="d-flex">
-                                                    <img
-                                                        src="{{ asset('public/adminPanel/themesbrand.com/master/') }}/assets/images/users/avatar-5.jpg"
-                                                        class="me-3 rounded-circle avatar-xs"
-                                                        alt="user-pic"
-                                                    />
-                                                    <div class="flex-grow-1">
-                                                        <h6 class="m-0">Mike Bunch</h6>
-                                                        <span class="fs-11 mb-0 text-muted">React Developer</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="text-center pt-3 pb-1">
-                                        <a href="pages-search-results.html" class="btn btn-primary btn-sm"
-                                            >View All Results <i class="ri-arrow-right-line ms-1"></i
-                                        ></a>
-                                    </div>
+                                    <button type="submit" class="btn btn-sm" style="position: absolute; right: 0; top: 0; border: none; background: none;">
+                                        <span class="mdi mdi-magnify search-widget-icon"></span>
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -191,24 +124,58 @@
                                     class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
                                     aria-labelledby="page-header-search-dropdown"
                                 >
-                                    <form class="p-3">
+                                    <form class="p-3" action="{{ route('search') }}" method="GET" id="mobile-search-form">
                                         <div class="form-group m-0">
-                                            <div class="input-group">    
+                                            <div class="input-group">
                                                 <input
                                                     type="text"
                                                     class="form-control"
                                                     placeholder="Search ..."
                                                     aria-label="Recipient's username"
+                                                    name="query"
+                                                    value="{{ request('query') }}"
                                                 />
                                                 <button class="btn btn-primary" type="submit">
                                                     <i class="mdi mdi-magnify"></i>
                                                 </button>
-                                            </div> 
+                                            </div>
                                         </div>
                                     </form>
-                                </div> 
+                                </div>
                             </div>
 
+                            <!-- Notification Bell -->
+                            <div class="ms-1 header-item d-none d-sm-flex">
+                                <button
+                                    type="button"
+                                    class="btn btn-icon btn-topbar material-shadow-none btn-ghost-secondary rounded-circle"
+                                    data-bs-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                >
+                                    <i class="bx bx-bell fs-22"></i>
+                                    <span class="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger">0</span>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0">
+                                    <div class="dropdown-head bg-primary bg-pattern rounded-top">
+                                        <div class="p-3">
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <h6 class="m-0 fs-16 fw-semibold text-white">Notifications</h6>
+                                                    <span class="fs-13 text-white-50">You have 0 new notifications</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="px-2 pb-2">
+                                            <a href="javascript:void(0);" class="btn btn-sm btn-light w-100">
+                                                <span class="d-block lh-sm">
+                                                    <span class="align-middle">View All Notifications</span>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="ms-1 header-item d-none d-sm-flex">
                                 <button
@@ -440,25 +407,31 @@
                         <div id="two-column-menu"></div>
                         <ul class="navbar-nav" id="navbar-nav">
                             <li class="menu-title"><span data-key="t-menu">Menu</span></li>
+
                             <li class="nav-item">
+                                <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                                    <i class="ri-dashboard-line"></i> <span data-key="t-dashboard">Dashboard</span>
+                                </a>
+                            </li>
+
+                             <li class="nav-item">
                                 <a
-                                    class="nav-link menu-link"
-                                    href="#sidebarStaff"
+                                    class="nav-link menu-link {{ request()->routeIs('clientList', 'clientCreate', 'clientEdit', 'clientShow') ? 'active' : '' }}"
+                                    href="#sidebarClient"
                                     data-bs-toggle="collapse"
                                     role="button"
-                                    aria-expanded="false"
-                                    aria-controls="sidebarStaff"
+                                    aria-expanded="{{ request()->routeIs('clientList', 'clientCreate', 'clientEdit', 'clientShow') ? 'true' : 'false' }}"
+                                    aria-controls="sidebarClient"
                                 >
-                                    <i class="ri-apps-2-line"></i> <span data-key="t-apps">Staff Management</span>
+                                    <i class="ri-user-line"></i> <span data-key="t-apps">Client Management</span>
                                 </a>
-                                <div class="collapse menu-dropdown" id="sidebarStaff">
+                                <div class="collapse menu-dropdown" id="sidebarClient">
                                     <ul class="nav nav-sm flex-column">
-                                       
                                         <li class="nav-item">
-                                            <a href="{{ route('staffView') }}" class="nav-link" data-key="t-chat"> Add Staff </a>
+                                            <a href="{{ route('clientCreate') }}" class="nav-link {{ request()->routeIs('clientCreate') ? 'active' : '' }}"> Add Client </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{ route('staffList') }}" class="nav-link" data-key="t-chat"> Staff List </a>
+                                            <a href="{{ route('clientList') }}" class="nav-link {{ request()->routeIs('clientList') ? 'active' : '' }}"> Client List </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -466,23 +439,22 @@
 
                              <li class="nav-item">
                                 <a
-                                    class="nav-link menu-link"
-                                    href="#sidebarTeacher"
+                                    class="nav-link menu-link {{ request()->routeIs('productList', 'productCreate', 'productEdit', 'productShow') ? 'active' : '' }}"
+                                    href="#sidebarProduct"
                                     data-bs-toggle="collapse"
                                     role="button"
-                                    aria-expanded="false"
-                                    aria-controls="sidebarTeacher"
+                                    aria-expanded="{{ request()->routeIs('productList', 'productCreate', 'productEdit', 'productShow') ? 'true' : 'false' }}"
+                                    aria-controls="sidebarProduct"
                                 >
-                                    <i class="ri-apps-2-line"></i> <span data-key="t-apps">Teacher Management</span>
+                                    <i class="ri-shopping-bag-line"></i> <span data-key="t-apps">Product Management</span>
                                 </a>
-                                <div class="collapse menu-dropdown" id="sidebarTeacher">
+                                <div class="collapse menu-dropdown" id="sidebarProduct">
                                     <ul class="nav nav-sm flex-column">
-                                       
                                         <li class="nav-item">
-                                            <a href="{{ route('teacherView') }}" class="nav-link" data-key="t-chat"> Add Teacher </a>
+                                            <a href="{{ route('productCreate') }}" class="nav-link {{ request()->routeIs('productCreate') ? 'active' : '' }}"> Add Product </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{ route('teacherList') }}" class="nav-link" data-key="t-chat"> Teacher List </a>
+                                            <a href="{{ route('productList') }}" class="nav-link {{ request()->routeIs('productList') ? 'active' : '' }}"> Product List </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -490,23 +462,68 @@
 
                              <li class="nav-item">
                                 <a
-                                    class="nav-link menu-link"
-                                    href="#sidebarStudent"
+                                    class="nav-link menu-link {{ request()->routeIs('brandList', 'brandCreate', 'brandEdit', 'brandShow') ? 'active' : '' }}"
+                                    href="#sidebarBrand"
                                     data-bs-toggle="collapse"
                                     role="button"
-                                    aria-expanded="false"
-                                    aria-controls="sidebarStudent"
+                                    aria-expanded="{{ request()->routeIs('brandList', 'brandCreate', 'brandEdit', 'brandShow') ? 'true' : 'false' }}"
+                                    aria-controls="sidebarBrand"
                                 >
-                                    <i class="ri-apps-2-line"></i> <span data-key="t-apps">Student Management</span>
+                                    <i class="ri-price-tag-3-line"></i> <span data-key="t-apps">Brand Management</span>
                                 </a>
-                                <div class="collapse menu-dropdown" id="sidebarStudent">
+                                <div class="collapse menu-dropdown" id="sidebarBrand">
                                     <ul class="nav nav-sm flex-column">
-                                       
                                         <li class="nav-item">
-                                            <a href="{{ route('studentView') }}" class="nav-link" data-key="t-chat"> Add Student </a>
+                                            <a href="{{ route('brandCreate') }}" class="nav-link {{ request()->routeIs('brandCreate') ? 'active' : '' }}"> Add Brand </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{ route('studentList') }}" class="nav-link" data-key="t-chat"> Student List </a>
+                                            <a href="{{ route('brandList') }}" class="nav-link {{ request()->routeIs('brandList') ? 'active' : '' }}"> Brand List </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                             <li class="nav-item">
+                                <a
+                                    class="nav-link menu-link {{ request()->routeIs('categoryList', 'categoryCreate', 'categoryEdit', 'categoryShow') ? 'active' : '' }}"
+                                    href="#sidebarCategory"
+                                    data-bs-toggle="collapse"
+                                    role="button"
+                                    aria-expanded="{{ request()->routeIs('categoryList', 'categoryCreate', 'categoryEdit', 'categoryShow') ? 'true' : 'false' }}"
+                                    aria-controls="sidebarCategory"
+                                >
+                                    <i class="ri-folder-line"></i> <span data-key="t-apps">Category Management</span>
+                                </a>
+                                <div class="collapse menu-dropdown" id="sidebarCategory">
+                                    <ul class="nav nav-sm flex-column">
+                                        <li class="nav-item">
+                                            <a href="{{ route('categoryCreate') }}" class="nav-link {{ request()->routeIs('categoryCreate') ? 'active' : '' }}"> Add Category </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('categoryList') }}" class="nav-link {{ request()->routeIs('categoryList') ? 'active' : '' }}"> Category List </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                             <li class="nav-item">
+                                <a
+                                    class="nav-link menu-link {{ request()->routeIs('invoiceList', 'invoiceCreate', 'invoiceEdit', 'invoiceShow') ? 'active' : '' }}"
+                                    href="#sidebarInvoice"
+                                    data-bs-toggle="collapse"
+                                    role="button"
+                                    aria-expanded="{{ request()->routeIs('invoiceList', 'invoiceCreate', 'invoiceEdit', 'invoiceShow') ? 'true' : 'false' }}"
+                                    aria-controls="sidebarInvoice"
+                                >
+                                    <i class="ri-file-text-line"></i> <span data-key="t-apps">Invoice Management</span>
+                                </a>
+                                <div class="collapse menu-dropdown" id="sidebarInvoice">
+                                    <ul class="nav nav-sm flex-column">
+                                        <li class="nav-item">
+                                            <a href="{{ route('invoiceCreate') }}" class="nav-link {{ request()->routeIs('invoiceCreate') ? 'active' : '' }}"> Create Invoice </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('invoiceList') }}" class="nav-link {{ request()->routeIs('invoiceList') ? 'active' : '' }}"> Invoice List </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -2032,6 +2049,48 @@
 
         <!-- App js -->
         <script src="{{ asset('public/adminPanel/themesbrand.com/master/') }}/assets/js/app.js"></script>
+
+        <!-- Custom Search JavaScript -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Handle desktop search form
+                const desktopSearchForm = document.getElementById('desktop-search-form');
+                if (desktopSearchForm) {
+                    desktopSearchForm.addEventListener('submit', function(e) {
+                        const searchInput = this.querySelector('input[name="query"]');
+                        if (!searchInput.value.trim()) {
+                            e.preventDefault();
+                            searchInput.focus();
+                            return false;
+                        }
+                    });
+                }
+
+                // Handle mobile search form
+                const mobileSearchForm = document.getElementById('mobile-search-form');
+                if (mobileSearchForm) {
+                    mobileSearchForm.addEventListener('submit', function(e) {
+                        const searchInput = this.querySelector('input[name="query"]');
+                        if (!searchInput.value.trim()) {
+                            e.preventDefault();
+                            searchInput.focus();
+                            return false;
+                        }
+                    });
+                }
+
+                // Auto-focus search input when dropdown is shown (mobile)
+                const mobileSearchDropdown = document.getElementById('page-header-search-dropdown');
+                if (mobileSearchDropdown) {
+                    mobileSearchDropdown.addEventListener('shown.bs.dropdown', function() {
+                        const searchInput = document.querySelector('.dropdown-menu input[name="query"]');
+                        if (searchInput) {
+                            searchInput.focus();
+                        }
+                    });
+                }
+            });
+        </script>
     </body>
 
     <!-- Mirrored from themesbrand.com/master/velzon/html/master/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 30 Nov 2025 10:22:49 GMT -->
