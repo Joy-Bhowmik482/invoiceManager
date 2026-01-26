@@ -414,7 +414,7 @@
                                 </a>
                             </li>
 
-                             <li class="nav-item">
+                            <li class="nav-item">
                                 <a
                                     class="nav-link menu-link {{ request()->routeIs('clientList', 'clientCreate', 'clientEdit', 'clientShow') ? 'active' : '' }}"
                                     href="#sidebarClient"
@@ -435,9 +435,38 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </li>
+                            </li>    
 
-                             <li class="nav-item">
+                            <li class="nav-item">
+    <a
+        class="nav-link menu-link {{ request()->routeIs('configuration.list', 'configCreate', 'configEdit', 'configurations.show') ? 'active' : '' }}"
+        href="#sidebarConfig"
+        data-bs-toggle="collapse"
+        role="button"
+        aria-expanded="{{ request()->routeIs('configuration.list', 'configCreate', 'configurations.edit', 'configurations.show') ? 'true' : 'false' }}"
+        aria-controls="sidebarConfig"
+    >
+        <i class="ri-settings-3-line"></i>
+        <span data-key="t-apps">Configuration Management</span>
+    </a>
+    <div class="collapse menu-dropdown" id="sidebarConfig">
+        <ul class="nav nav-sm flex-column">
+            <li class="nav-item">
+                <a href="{{ route('configuration.create') }}" class="nav-link {{ request()->routeIs('configuration.create') ? 'active' : '' }}">
+                    Add Configuration
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('configuration.list') }}" class="nav-link {{ request()->routeIs('configuration.list', 'configuration.edit', 'configuration.show') ? 'active' : '' }}">
+                    Configuration List
+                </a>
+            </li>
+        </ul>
+    </div>
+</li>
+
+
+                            <li class="nav-item">
                                 <a
                                     class="nav-link menu-link {{ request()->routeIs('productList', 'productCreate', 'productEdit', 'productShow') ? 'active' : '' }}"
                                     href="#sidebarProduct"
@@ -528,6 +557,8 @@
                                     </ul>
                                 </div>
                             </li>
+
+                            
                         </ul>
                     </div>
                     <!-- Sidebar -->

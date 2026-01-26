@@ -1,6 +1,9 @@
 @extends('includePage')
 @section('contentTitle', 'View Invoice')
+
 @section('contentBody')
+
+<div id="printArea">
     <div class="container mt-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2>Invoice #{{ $invoice->invoice_number }}</h2>
@@ -14,6 +17,7 @@
             <div class="card-header">
                 <h5>Invoice Details</h5>
             </div>
+
             <div class="card-body">
                 <div class="row mb-3">
                     <div class="col-md-6">
@@ -61,12 +65,12 @@
                     </table>
                 </div>
 
-                @if($invoice->notes)
-                    <div class="mt-3">
-                        <strong>Notes:</strong><br>
-                        {{ $invoice->notes }}
-                    </div>
-                @endif
+                {{-- NOTES (ALWAYS VISIBLE) --}}
+                <div class="mt-3">
+                    <strong>Notes:</strong><br>
+                    {{ $invoice->notes ?? '—' }}
+                </div>
+
             </div>
         </div>
 
@@ -89,7 +93,9 @@
                             <tbody>
                                 @foreach($invoice->payments as $payment)
                                     <tr>
-                                        <td>{{ $payment->payment_date->format('M d, Y') }}</td>
+                                        <td>
+                                            {{ \Carbon\Carbon::parse($payment->payment_date)->format('M d, Y') }}
+                                        </td>
                                         <td>${{ number_format($payment->amount, 2) }}</td>
                                         <td>{{ $payment->payment_method ?? 'N/A' }}</td>
                                         <td>{{ $payment->notes ?? 'N/A' }}</td>
@@ -102,4 +108,26 @@
             </div>
         @endif
     </div>
+</div>
+
+{{-- PRINT BUTTON --}}
+<div class="text-center mt-4">
+    <button onclick="printInvoice()" class="btn btn-primary">
+        🖨️ Print Invoice
+    </button>
+</div>
+
+{{-- PRINT SCRIPT --}}
+<script>
+    function printInvoice() {
+        const printContents = document.getElementById('printArea').innerHTML;
+        const originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+        location.reload();
+    }
+</script>
+
 @endsection

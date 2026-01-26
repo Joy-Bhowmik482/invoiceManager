@@ -8,6 +8,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ConfigurationController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -62,4 +63,16 @@ Route::delete('/invoices/{id}', [InvoiceController::class, 'destroy'])->name('in
 Route::post('/invoices/{id}/payment', [InvoiceController::class, 'addPayment'])->name('invoiceAddPayment');
 Route::patch('/invoices/{id}/mark-paid', [InvoiceController::class, 'markAsPaid'])->name('invoiceMarkPaid');
 Route::patch('/invoices/{id}/mark-unpaid', [InvoiceController::class, 'markAsUnpaid'])->name('invoiceMarkUnpaid');
+
+// --- Configuration Routes ---
+Route::prefix('configurations')->name('configuration.')->group(function () {
+    Route::get('/', [ConfigurationController::class, 'index'])->name('list');
+    Route::get('/create', [ConfigurationController::class, 'create'])->name('create');
+    Route::post('/storeConfiguration', [ConfigurationController::class, 'store'])->name('configstore');
+    Route::get('/{configuration}', [ConfigurationController::class, 'show'])->name('show');
+    Route::get('/{configuration}/edit', [ConfigurationController::class, 'edit'])->name('edit');
+    Route::put('/{configuration}', [ConfigurationController::class, 'update'])->name('update');
+    Route::delete('/{configuration}', [ConfigurationController::class, 'destroy'])->name('destroy');
+});
+
 
