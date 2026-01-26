@@ -35,12 +35,6 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label class="fw-bold">Stock Quantity:</label>
-                            <p class="mb-0">{{ $product->stock_quantity }}</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
                             <label class="fw-bold">Created At:</label>
                             <p class="mb-0">{{ $product->created_at->format('M d, Y H:i') }}</p>
                         </div>

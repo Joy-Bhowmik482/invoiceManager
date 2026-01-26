@@ -72,7 +72,6 @@
                                         <td class="fw-semibold">{{ $product->name }}</td>
                                         <td>{{ $product->description ?? 'N/A' }}</td>
                                         <td>${{ number_format($product->price, 2) }}</td>
-                                        <td>{{ $product->stock_quantity }}</td>
                                         <td>
                                             <a href="{{ route('productShow', $product->id) }}" class="btn btn-sm btn-outline-info">View</a>
                                             <a href="{{ route('productEdit', $product->id) }}" class="btn btn-sm btn-outline-warning">Edit</a>

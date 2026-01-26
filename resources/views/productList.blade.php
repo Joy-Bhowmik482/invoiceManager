@@ -23,8 +23,7 @@
                             <th>Description</th>
                             <th>Brand</th>
                             <th>Category</th>
-                            <th>Price</th>
-                            <th>Stock Quantity</th>
+                            <th>Price</th>                         
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -36,7 +35,6 @@
                                 <td>{{ $product->brand->name ?? 'N/A' }}</td>
                                 <td>{{ $product->category->name ?? 'N/A' }}</td>
                                 <td>${{ number_format($product->price, 2) }}</td>
-                                <td>{{ $product->stock_quantity }}</td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group">
                                         <a href="{{ route('productShow', $product->id) }}" class="btn btn-outline-info btn-sm">View</a>
