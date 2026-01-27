@@ -19,6 +19,12 @@ class ClientController extends Controller
             'address' => 'nullable|string',
         ]);
 
+        // Generate unique customer_code automatically
+        $lastClient = Client::latest('id')->first();
+        $number = $lastClient ? $lastClient->id + 1 : 1;
+        $data['customer_code'] = 'CUST-' . str_pad($number, 4, '0', STR_PAD_LEFT);
+
+        // Create the client with the generated code
         Client::create($data);
 
         return redirect()->route('clientList')->with('success', 'Client added successfully.');

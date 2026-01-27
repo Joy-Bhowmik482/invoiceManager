@@ -46,6 +46,9 @@
             .main-content {
                 flex: 1;
             }
+            .payment_details table td {
+                padding: 0.3rem 0 !important;
+            }
         </style>
     </head>
 
@@ -454,11 +457,6 @@
             <li class="nav-item">
                 <a href="{{ route('configuration.create') }}" class="nav-link {{ request()->routeIs('configuration.create') ? 'active' : '' }}">
                     Add Configuration
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('configuration.list') }}" class="nav-link {{ request()->routeIs('configuration.list', 'configuration.edit', 'configuration.show') ? 'active' : '' }}">
-                    Configuration List
                 </a>
             </li>
         </ul>

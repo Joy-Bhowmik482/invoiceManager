@@ -4,6 +4,26 @@
 
 @section('contentBody')
 
+@if ($configurations->count() > 0)
+    @php
+    $name = $configurations->first()->name;
+    $email = $configurations->first()->email;
+    $phone = $configurations->first()->phone;
+    $address = $configurations->first()->address;
+    $deposit_address = $configurations->first()->deposit_address;
+    $deposit_method = $configurations->first()->deposit_method;
+    @endphp
+@else
+    @php
+    $name = '';
+    $email = '';
+    $phone = '';
+    $address = '';
+    $deposit_address = '';
+    $deposit_method = '';
+    @endphp
+@endif
+
 <div class="container mt-4">
     <div class="d-flex justify-content-center">
         <div class="w-100" style="max-width: 600px;">
@@ -35,6 +55,10 @@
                     <form action="{{ route('configuration.configstore') }}" method="POST">
                         @csrf
 
+                        @if($configurations->count() > 0)
+                            <input type="hidden" name="id" value="{{ $configurations->first()->id }}">
+                        @endif
+
                         <!-- Configuration Name -->
                         <div class="mb-3 form-floating">
                             <input type="text"
@@ -42,37 +66,87 @@
                                    id="name"
                                    name="name"
                                    placeholder="Configuration Name"
-                                   value="{{ old('name') }}"
+                                   value="{{ $name }}"
                                    required>
-                            <label for="name"><i class="ri-settings-line me-1"></i>Configuration Name</label>
+                            <label for="name">
+                                <i class="ri-settings-line me-1"></i>Configuration Name
+                            </label>
                         </div>
 
-                        <!-- Configuration Key -->
+                        <!-- Email Address -->
+                        <div class="mb-3 form-floating">
+                            <input type="email"
+                                   class="form-control form-control-lg border-0 shadow-sm"
+                                   id="email"
+                                   name="email"
+                                   placeholder="Email Address"
+                                   value="{{ $email }}"
+                                   required>
+                            <label for="email">
+                                <i class="ri-mail-line me-1"></i>Email Address
+                            </label>
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="mb-3 form-floating">
+                            <input type="tel"
+                                   class="form-control form-control-lg border-0 shadow-sm"
+                                   id="phone"
+                                   name="phone"
+                                   placeholder="Phone Number"
+                                   value="{{ $phone }}"
+                                   required>
+                            <label for="phone">
+                                <i class="ri-phone-line me-1"></i>Phone Number
+                            </label>
+                        </div>
+
+                        <!-- Address -->
                         <div class="mb-3 form-floating">
                             <input type="text"
                                    class="form-control form-control-lg border-0 shadow-sm"
-                                   id="key"
-                                   name="key"
-                                   placeholder="Configuration Key"
-                                   value="{{ old('key') }}"
+                                   id="address"
+                                   name="address"
+                                   placeholder="Address"
+                                   value="{{ $address }}"
                                    required>
-                            <label for="key"><i class="ri-key-line me-1"></i>Configuration Key</label>
+                            <label for="address">
+                                <i class="ri-map-pin-line me-1"></i>Address
+                            </label>
                         </div>
 
-                        <!-- Configuration Value -->
+                        <!-- Deposit Address (NEW) -->
                         <div class="mb-4 form-floating">
-                            <textarea class="form-control form-control-lg border-0 shadow-sm"
-                                      id="value"
-                                      name="value"
-                                      placeholder="Configuration Value"
-                                      style="height: 80px;">{{ old('value') }}</textarea>
-                            <label for="value"><i class="ri-file-text-line me-1"></i>Configuration Value</label>
+                            <input type="text"
+                                   class="form-control form-control-lg border-0 shadow-sm"
+                                   id="deposit_address"
+                                   name="deposit_address"
+                                   placeholder="Deposit Address"
+                                   value="{{ $deposit_address }}"
+                                   required>
+                            <label for="deposit_address">
+                                <i class="ri-bank-line me-1"></i>Deposit Address
+                            </label>
+                        </div>
+
+                        <!-- Deposit Method (NEW) -->
+                        <div class="mb-4 form-floating">
+                            <input type="text"
+                                   class="form-control form-control-lg border-0 shadow-sm"
+                                   id="deposit_method"
+                                   name="deposit_method"
+                                   placeholder="Deposit Method"
+                                   value="{{ $deposit_method }}"
+                                   required>
+                            <label for="deposit_method">
+                                <i class="ri-money-dollar-circle-line me-1"></i>Deposit Method
+                            </label>
                         </div>
 
                         <!-- Submit Button -->
                         <div class="d-grid">
                             <button type="submit" class="btn btn-warning btn-lg rounded-pill shadow fw-bold">
-                                <i class="ri-add-circle-line me-2"></i>Add Configuration
+                                <i class="ri-add-circle-line me-2"></i>Save Configuration
                             </button>
                         </div>
 

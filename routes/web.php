@@ -66,8 +66,8 @@ Route::patch('/invoices/{id}/mark-unpaid', [InvoiceController::class, 'markAsUnp
 
 // --- Configuration Routes ---
 Route::prefix('configurations')->name('configuration.')->group(function () {
-    Route::get('/', [ConfigurationController::class, 'index'])->name('list');
-    Route::get('/create', [ConfigurationController::class, 'create'])->name('create');
+    // Route::get('/', [ConfigurationController::class, 'index'])->name('list');
+    Route::get('/create', [ConfigurationController::class, 'index'])->name('create');
     Route::post('/storeConfiguration', [ConfigurationController::class, 'store'])->name('configstore');
     Route::get('/{configuration}', [ConfigurationController::class, 'show'])->name('show');
     Route::get('/{configuration}/edit', [ConfigurationController::class, 'edit'])->name('edit');

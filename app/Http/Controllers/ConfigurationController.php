@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Configuration;
+use App\Models\configuration;
 use Illuminate\Http\Request;
 
 class ConfigurationController extends Controller
@@ -10,28 +10,25 @@ class ConfigurationController extends Controller
     // List all configurations
     public function index()
     {
-        $configurations = Configuration::latest()->paginate(10);
-        return view('configurations.index', compact('configurations'));
-    }
 
-    // Show create form
-    public function create()
-    {
-        return view('configuration');
+        $configurations = configuration::latest()->paginate(1);
+        return view('configuration', compact('configurations'));
     }
 
     // Store new configuration
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'key' => 'required|string|max:255|unique:configurations,key',
-            'value' => 'nullable|string',
-        ]);
-
-        Configuration::create($request->all());
-
-        return redirect()->route('configuration.list')->with('success', 'Configuration added successfully!');
+        if($request->id)
+        {
+            $configuration = configuration::find($request->id);
+            $configuration->update($request->only(['name', 'email', 'phone', 'address', 'deposit_address', 'deposit_method']));
+            return redirect()->route('configuration.create')->with('success', 'Configuration updated successfully!');
+        }
+        else
+        {
+            configuration::create($request->only(['name', 'email', 'phone', 'address','deposit_address', 'deposit_method']));
+            return redirect()->route('configuration.create')->with('success', 'Configuration added successfully!');
+        }
     }
 
     // Show single configuration
@@ -49,11 +46,12 @@ class ConfigurationController extends Controller
     // Update configuration
     public function update(Request $request, Configuration $configuration)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'key' => 'required|string|max:255|unique:configurations,key,' . $configuration->id,
-            'value' => 'nullable|string',
-        ]);
+      $request->validate([
+    'name'    => 'required|string|max:255',
+    'email'   => 'required|email|max:255',
+    'phone'   => 'required|string|max:20',
+    'address' => 'required|string|max:500',
+]);
 
         $configuration->update($request->all());
 

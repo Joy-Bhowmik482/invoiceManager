@@ -11,14 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('configurations', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('phone')->nullable();
-            $table->text('address')->nullable();
-            $table->timestamps();
-
+        Schema::table('configurations', function (Blueprint $table) {
+            $table->text('deposit_address')->nullable()->after('address'); 
         });
     }
 
@@ -27,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('configurations');
+        Schema::table('configurations', function (Blueprint $table) {
+            $table->dropColumn('deposit_address');
+        });
     }
 };
